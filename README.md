@@ -2,7 +2,8 @@ My comments:
 1. I used Java to program this coding challenge.
 2. All input file and output files are hardcoded in codeChallenge.java.
 3. I didn't use any specical software or library. All libraries used are defalt Java libraries.
-4. run.sh: first, cd src; second, javac codeChallenge.java; third, java codeChallenge
+4. There are 5 java files. main function is in codeChallenge.java file. Other 4 files are Host.java, Resource.java, Hour.java, HostAttempt.java which stand for 4 useful classes used in codeChallenge.java.
+5. run.sh: first, cd src; second, javac codeChallenge.java; third, java codeChallenge
 
 
 
