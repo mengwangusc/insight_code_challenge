@@ -4,6 +4,7 @@ My comments:
 3. I didn't use any specical software or library. All libraries used are defalt Java libraries.
 4. There are 5 java files. main function is in codeChallenge.java file. Other 4 files are Host.java, Resource.java, Hour.java, HostAttempt.java which stand for 4 useful classes used in codeChallenge.java.
 5. run.sh: first, cd src; second, javac codeChallenge.java; third, java codeChallenge
+6. There are no input or output argument in command line.
 
 
 
