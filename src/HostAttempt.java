@@ -57,10 +57,12 @@ public class HostAttempt{
                     if(otherTime.getTime() - this.timeFailed2.getTime() <= ATTEMPTTIME){
                         this.timeFailed1 = this.timeFailed2;
                         this.timeFailed2 = otherTime;
+                        numFailed = 2;
                     }
                     else if(otherTime.getTime() - this.timeFailed2.getTime() > ATTEMPTTIME){
                         this.timeFailed1 = otherTime;
                         this.timeFailed2 = new Date();
+                        numFailed = 1;
                     }
                 }
             }
