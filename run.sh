@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-# one example of run.sh script for implementing the features using python
-# the contents of this script could be replaced with similar files from any major language
-
-# I'll execute my programs, with the input directory log_input and output the files in the directory log_output
+# directories for input file and output file are hard-coded in codeChallenge.java
 cd src
 javac codeChallenge.java
 java codeChallenge
