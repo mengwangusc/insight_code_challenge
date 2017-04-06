@@ -6,3 +6,4 @@ Some comments:
 5. run.sh: first, cd src; second, javac codeChallenge.java; third, java codeChallenge
 6. There are no input or output argument in command line.
 7. Since the input file given is too large, I extracted its first 7000 lines and put them in log.txt file and my own test case.
+8. All Java files are well documented and explained briefly about what data structure to be used and what is the algorithm.
