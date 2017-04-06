@@ -8,3 +8,6 @@ Some comments:
 7. Since the input file given is too large, I extracted its first 7000 lines and put them in log.txt file and my own test case.
 8. All Java files are well documented and explained briefly about what data structure to be used and what is the algorithm.
 9. All 4 features are well achieved and all test cases are passed
+
+My name is Meng Wang and my Email is wangmeng@usc.edu.
+If you have some questions, please feel free to let me know.
