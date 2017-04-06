@@ -14,6 +14,9 @@ public class codeChallenge{
      hourStack              
      count the number of times the site was accessed during this 60-minute window
      
+     timeMap
+     count the number of each time appearing in the input file
+     
      attempMap              
      record and update failed login attempt in 20-second time window and block following login attempt
      Key is host name and Value is HostAttempt object
@@ -27,6 +30,7 @@ public class codeChallenge{
     private static HashMap<String, Integer> hostMap;
     private static HashMap<String, Long> resourceMap;
     private static Stack<Hour> hoursStack;
+    private static HashMap<Date, Integer> timeMap;
     private static HashMap<String, HostAttempt> attemptMap;
     private static PrintWriter writerBlocked;
     private static Date startingTimeofLogFile;
@@ -47,7 +51,7 @@ public class codeChallenge{
             resourceMap = new HashMap<String, Long>();
             hoursStack = new Stack<Hour>();
             attemptMap = new HashMap<String, HostAttempt>();
-            
+            timeMap = new HashMap<Date, Integer>();
             
             writerBlocked = new PrintWriter(BLOCKSTXT);
             String line = "";
@@ -215,6 +219,13 @@ public class codeChallenge{
         Stack<Hour> tmpStack = new Stack<Hour>();
         SimpleDateFormat format = new SimpleDateFormat(TIMEFORMAT);
         Date curTime = format.parse(stringTime);
+        if(timeMap.containsKey(curTime)){
+            timeMap.put(curTime,timeMap.get(curTime)+1);
+        }
+        else{
+            timeMap.put(curTime,1);
+        }
+        
         if(hoursStack.isEmpty()){
             hoursStack.push(new Hour(stringTime));
             return;
@@ -240,8 +251,8 @@ public class codeChallenge{
     /*
      First add all elements in hoursStack to an ArrayList<Hour> and only the beginning time of each time window to hoursSet<Date>.
      Second pick up the top-10 1-hour time window with largest number of times the site was accessed.
-     Third pick up the first one in top-10 and shift the beginning time of the time window by decreasing 1 second. If the new time window didn't omit any old login attempts or add new ones, the new time window will have the same number of time as the old time window. And output the new time window to outputList.
-     Keep doing the third step until we have ten time windows.
+     Third pick up the first one in top-10 and shift the beginning time of the time window by decreasing 1 second. If the new time window didn't add new request time, the number of times accessing this site of this new window will be the same as the old time window if not omitting any request time or will be times of old window minus how many request times were omitted. And output the new time window to outputList.
+     Keep doing the third step until we have check all top-10 1-hour time windows.
      */
     private static void genHoursFile() throws FileNotFoundException, ParseException{
         ArrayList<Hour> listHours = new ArrayList<Hour>();
@@ -258,7 +269,6 @@ public class codeChallenge{
         for(i=0;i < NUMSHOWN && i<listHours.size();i++){
             tenHighest.add(listHours.get(i));
         }
-        int numOutput = 0;
         ArrayList<Hour> outputList = new ArrayList<Hour>();
         for(int j=0; j<i; j++){
             Hour tmpHour = tenHighest.get(j);
@@ -271,13 +281,20 @@ public class codeChallenge{
                 cal.add(Calendar.SECOND, 3601);
                 Date d2 = cal.getTime();
                 outputList.add(tmpHour);
-                while(!hoursSet.contains(d1) && !hoursSet.contains(d2)){
+                while(!hoursSet.contains(d1)){
                     
                     SimpleDateFormat format = new SimpleDateFormat(TIMEFORMAT);
                     TimeZone tz = TimeZone.getTimeZone(TIMEZONE);
                     format.setTimeZone(tz);
-                    outputList.add(new Hour(format.format(d1), tmpHour.getTimes()));
-                    numOutput++;
+                    if(timeMap.containsKey(d2)){
+                        tmpHour = new Hour(format.format(d1), tmpHour.getTimes() - timeMap.get(d2));
+                        outputList.add(tmpHour);
+                    }
+                    else{
+                        tmpHour = new Hour(format.format(d1), tmpHour.getTimes());
+                        outputList.add(tmpHour);
+                    }
+                    
                     
                     cal.setTime(d1);
                     cal.add(Calendar.SECOND, -1);
@@ -288,11 +305,7 @@ public class codeChallenge{
                 }
             }
             else{
-                numOutput++;
                 outputList.add(tmpHour);
-            }
-            if(numOutput >= NUMSHOWN){
-                break;
             }
         }
         Collections.sort(outputList);
