@@ -19,7 +19,7 @@ public class HostAttempt{
     private Date timeFailed3;
     private int numFailed;
     private static final int ATTEMPTTIME = 20000; // 20 second in millisecond
-    private static final int BLOCKEDTIME = 1200000; //20 minute in millisecond
+    private static final int BLOCKEDTIME = 300000; //5 minute in millisecond
     
     /*
      Initiate one 20-second window for one host or IP address
