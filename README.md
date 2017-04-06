@@ -9,5 +9,5 @@ Some comments:
 8. All Java files are well documented and explained briefly about what data structure to be used and what is the algorithm.
 9. All 4 features are well achieved and all test cases are passed
 
-My name is Meng Wang and my Email is wangmeng@usc.edu.
+My name is Meng Wang and my email address is wangmeng@usc.edu.
 If you have some questions, please feel free to let me know.
