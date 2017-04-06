@@ -1,10 +1,10 @@
 teleman.pr.mcs.net,58
-129.188.154.200,41
+129.188.154.200,42
+www-a1.proxy.aol.com,41
+palona1.cns.hp.com,40
+svasu.extern.ucsd.edu,36
+kristina.az.com,35
+news.ti.com,34
 slip-5.io.com,34
+brandt.xensei.com,33
 dnet018.sat.texas.net,33
-news.ti.com,29
-www-a1.proxy.aol.com,28
-blv-pm2-ip16.halcyon.com,27
-blv-pm0-ip28.halcyon.com,26
-kuts5p06.cc.ukans.edu,26
-brandt.xensei.com,24
